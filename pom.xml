@@ -453,15 +453,15 @@
 		<tag>cosmo-multimodule-1.5.3</tag>
 	</scm>
 	
-	<repositories>
-		<!-- Embedded Maria DB. -->
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>bintray</name>
-			<url>http://jcenter.bintray.com</url>
-		</repository>
-	</repositories>
+	<!--<repositories>-->
+		<!--&lt;!&ndash; Embedded Maria DB. &ndash;&gt;-->
+		<!--<repository>-->
+			<!--<snapshots>-->
+				<!--<enabled>false</enabled>-->
+			<!--</snapshots>-->
+			<!--<id>central</id>-->
+			<!--<name>bintray</name>-->
+			<!--<url>http://jcenter.bintray.com</url>-->
+		<!--</repository>-->
+	<!--</repositories>-->
 </project>

@@ -104,14 +104,16 @@ public class SecurityFilterConfig {
         SecurityFilterChain filterChain = new DefaultSecurityFilterChain(AnyRequestMatcher.INSTANCE,
                 this.cosmoExceptionFilter, this.extraTicketFilter, this.ticketFilter,
                 new BasicAuthenticationFilter(authManager, this.authEntryPoint), securityFilter);
-
-        FilterRegistrationBean<?> filterBean = new FilterRegistrationBean<>(new FilterChainProxy(filterChain));
+        FilterChainProxy fcp = new FilterChainProxy(filterChain);
+        fcp.setFirewall(allowUrlEncodedSlashHttpFirewall());
+        FilterRegistrationBean<?> filterBean = new FilterRegistrationBean<>(fcp);
         filterBean.addUrlPatterns(PATH_DAV);
         return filterBean;
     }
 
     @Bean
     public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAA");
         //StrictHttpFirewall firewall = new StrictHttpFirewall();
         DefaultHttpFirewall firewall = new DefaultHttpFirewall();
         firewall.setAllowUrlEncodedSlash(true);

@@ -42,14 +42,4 @@ public class DataSourceConfig extends HikariConfig {
     public DataSource ds() {
         return new HikariDataSource(this);
     }
-
-    @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        //StrictHttpFirewall firewall = new StrictHttpFirewall();
-        DefaultHttpFirewall firewall = new DefaultHttpFirewall();
-        firewall.setAllowUrlEncodedSlash(true);
-//        firewall.setAllowSemicolon(true);
-//        firewall.setUnsafeAllowAnyHttpMethod(true);
-        return firewall;
-    }
 }

@@ -17,6 +17,8 @@ package org.unitedinternet.cosmo.dao;
 
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.unitedinternet.cosmo.model.CollectionItem;
 import org.unitedinternet.cosmo.model.HomeCollectionItem;
 import org.unitedinternet.cosmo.model.Item;
@@ -29,6 +31,8 @@ import org.unitedinternet.cosmo.model.filter.ItemFilter;
  * Interface for DAO that provides base functionality for items stored in the server.
  *
  */
+
+@Transactional
 public interface ItemDao extends Dao {
 
     /**

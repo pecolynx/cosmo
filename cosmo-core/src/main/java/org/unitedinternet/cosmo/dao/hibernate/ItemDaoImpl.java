@@ -24,6 +24,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,6 +62,7 @@ import org.unitedinternet.cosmo.util.VersionFourGenerator;
  * 
  */
 @Repository
+@Transactional
 public abstract class ItemDaoImpl implements ItemDao {
 
     private static final Log LOG = LogFactory.getLog(ItemDaoImpl.class);

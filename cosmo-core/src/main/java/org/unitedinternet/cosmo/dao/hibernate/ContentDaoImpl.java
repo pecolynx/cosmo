@@ -1,12 +1,12 @@
 /*
  * Copyright 2006 Open Source Applications Foundation
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,6 +24,7 @@ import java.util.Set;
 
 import javax.persistence.FlushModeType;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 import org.unitedinternet.cosmo.dao.ContentDao;
@@ -40,9 +41,11 @@ import org.unitedinternet.cosmo.model.hibernate.HibItem;
 import org.unitedinternet.cosmo.model.hibernate.HibItemTombstone;
 
 /**
- * 
+ *
  */
 @Repository
+
+@Transactional
 public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
 
     public ContentDaoImpl() {
@@ -74,7 +77,7 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
         setBaseItemProps(collection);
         ((HibItem) collection).addParent(parent);
 
-        System.out.println("aaaaaaaa");
+        System.out.println("eee");
         System.out.println("aaaaaaaa");
         System.out.println("aaaaaaaa");
         System.out.println("aaaaaaaa");
@@ -110,7 +113,8 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
                     NoteItem dup = icalUidMap.get(note.getIcalUid());
                     if (dup != null && !dup.getUid().equals(item.getUid())) {
                         throw new IcalUidInUseException("iCal uid" + note.getIcalUid()
-                                + " already in use for collection " + collection.getUid(), item.getUid(), dup.getUid());
+                                                        + " already in use for collection " + collection
+                                                                .getUid(), item.getUid(), dup.getUid());
                     }
                 }
 
@@ -242,7 +246,7 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
     @Override
     public void removeUserContent(User user) {
         TypedQuery<ContentItem> query = this.em.createNamedQuery("contentItem.by.owner", ContentItem.class)
-                .setParameter("owner", user);
+                                               .setParameter("owner", user);
         List<ContentItem> results = query.getResultList();
         for (ContentItem content : results) {
             removeContentRecursive(content);
@@ -260,10 +264,10 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
         // use custom HQL query that will eager fetch all associations
         if (timestamp == null) {
             query = this.em.createNamedQuery("contentItem.by.parent", ContentItem.class).setParameter("parent",
-                    collection);
+                                                                                                      collection);
         } else {
             query = this.em.createNamedQuery("contentItem.by.parent.timestamp", ContentItem.class)
-                    .setParameter("parent", collection).setParameter("timestamp", timestamp);
+                           .setParameter("parent", collection).setParameter("timestamp", timestamp);
         }
         query.setFlushMode(FlushModeType.COMMIT);
         List<ContentItem> results = query.getResultList();
@@ -445,7 +449,8 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
 
             if (!note.getModifies().getParents().contains(parent)) {
                 throw new ModelValidationException(note, "cannot create modification " + note.getUid()
-                        + " in collection " + parent.getUid() + ", master must be created or added first");
+                                                         + " in collection " + parent.getUid()
+                                                         + ", master must be created or added first");
             }
 
             // Add modification to all parents of master
@@ -517,8 +522,10 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
                     masterParents.append(p.getUid() + ",");
                 }
                 throw new ModelValidationException(note,
-                        "cannot create modification " + note.getUid() + " in collections " + modParents.toString()
-                                + " because master's parents are different: " + masterParents.toString());
+                                                   "cannot create modification " + note.getUid()
+                                                   + " in collections " + modParents.toString()
+                                                   + " because master's parents are different: " + masterParents
+                                                           .toString());
             }
         }
 
@@ -580,8 +587,9 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
          * added.
          */
         if (isNoteModification(item)) {
-            throw new ModelValidationException(item, "cannot add modification " + item.getUid() + " to collection "
-                    + collection.getUid() + ", only master");
+            throw new ModelValidationException(item,
+                                               "cannot add modification " + item.getUid() + " to collection "
+                                               + collection.getUid() + ", only master");
         }
 
         if (item instanceof ICalendarItem) {
@@ -636,12 +644,12 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
         TypedQuery<Long> query = null;
         if (item instanceof NoteItem) {
             query = this.em.createNamedQuery("noteItemId.by.parent.icaluid", Long.class)
-                    .setParameter("parentid", getBaseModelObject(parent).getId())
-                    .setParameter("icaluid", item.getIcalUid());
+                           .setParameter("parentid", getBaseModelObject(parent).getId())
+                           .setParameter("icaluid", item.getIcalUid());
         } else {
             query = this.em.createNamedQuery("icalendarItem.by.parent.icaluid", Long.class)
-                    .setParameter("parentid", getBaseModelObject(parent).getId())
-                    .setParameter("icaluid", item.getIcalUid());
+                           .setParameter("parentid", getBaseModelObject(parent).getId())
+                           .setParameter("icaluid", item.getIcalUid());
         }
         query.setFlushMode(FlushModeType.COMMIT);
 
@@ -703,15 +711,16 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
     public long countItems(long ownerId, long fromTimestamp) {
         return this.em
                 .createQuery("SELECT count(i) from HibNoteItem i "
-                        + "WHERE i.owner.id=:ownerId AND i.creationDate >:fromTimestamp", Long.class)
+                             + "WHERE i.owner.id=:ownerId AND i.creationDate >:fromTimestamp", Long.class)
                 .setParameter("ownerId", ownerId).setParameter("fromTimestamp", new Date(fromTimestamp))
                 .getSingleResult();
     }
 
     @Override
     public long countItems(long ownerId) {
-        return this.em.createQuery("SELECT count(i) from HibNoteItem i " + "WHERE i.owner.id=:ownerId", Long.class)
-                .setParameter("ownerId", ownerId).getSingleResult();
+        return this.em.createQuery("SELECT count(i) from HibNoteItem i " + "WHERE i.owner.id=:ownerId",
+                                   Long.class)
+                      .setParameter("ownerId", ownerId).getSingleResult();
     }
 
 }

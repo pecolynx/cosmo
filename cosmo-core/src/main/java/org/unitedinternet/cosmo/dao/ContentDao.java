@@ -18,6 +18,8 @@ package org.unitedinternet.cosmo.dao;
 import java.util.Date;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.unitedinternet.cosmo.model.CollectionItem;
 import org.unitedinternet.cosmo.model.ContentItem;
 import org.unitedinternet.cosmo.model.User;
@@ -29,6 +31,9 @@ import org.unitedinternet.cosmo.model.User;
  * containing content items or other collection items.
  * 
  */
+
+
+@Transactional
 public interface ContentDao extends ItemDao {
 
     /**

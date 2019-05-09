@@ -5,9 +5,12 @@
 		<groupId>net.oneandone.cosmo</groupId>
 		<artifactId>cosmo-multimodule</artifactId>
 		<version>3.4.2-SNAPSHOT</version>
+		<!--<relativePath>../pom.xml</relativePath>-->
 	</parent>
 		
 	<artifactId>cosmo-api</artifactId>
+	<!--<version>3.4.2-SNAPSHOT</version>-->
+	<!--<packaging>jar</packaging>-->
 
 	<name>cosmo-api</name>
 	<description>Cosmo API</description>
@@ -52,6 +55,12 @@
 			<artifactId>javax.annotation-api</artifactId>
 			<version>1.3.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+
 	</dependencies>
 	
 	 <build>
@@ -87,11 +96,5 @@
 		</pluginManagement>
 	</build>
 
-  <scm>
-    <developerConnection>scm:git:ssh://git@github.com/1and1/cosmo.git</developerConnection>
-	<connection>scm:git:ssh://git@github.com/1and1/cosmo.git</connection>
-	<url>https://github.com/1and1/</url>
-	<tag>cosmo-multimodule-1.5.3</tag>
-  </scm>
 
 </project>

@@ -26,19 +26,20 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<org.springframework.security.version>5.0.4.RELEASE</org.springframework.security.version>		
 		<qxlint.report.profile>false</qxlint.report.profile>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+		<java.version>1.8</java.version>
 		
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 				
 		<javax.el.version>2.2.4</javax.el.version>
 		<jackrabbit.version>2.19.0</jackrabbit.version>
 		<ical4j.version>2.0.4</ical4j.version>
+		<!--<ical4j.version>3.0.6</ical4j.version>-->
 		<icu4j.version>54.1.1</icu4j.version>		
 		<aspectjweaver.version>1.8.9</aspectjweaver.version>
 		<aopalliance.version>1.0</aopalliance.version>
@@ -70,6 +71,7 @@
 	<modules>
 		<module>cosmo-api</module>
 		<module>cosmo-core</module>
+		<module>cosmo-webapp</module>
 	</modules>
 
 
@@ -134,9 +136,8 @@
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>9.0.12</version>
 			</dependency>
-			
 
-			<!-- ical4j related libs -->
+      <!-- ical4j related libs -->
 			<dependency>
 				<groupId>net.oneandone.ical4j</groupId>
 				<artifactId>ical4j</artifactId>
@@ -379,13 +380,6 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<configuration>
-					<failOnError>false</failOnError>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
@@ -404,55 +398,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.10</version>
-				<configuration>
-					<failOnViolation>false</failOnViolation>
-					<configLocation>checkstyle-suppressions.xml</configLocation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.0.1</version>
-				<configuration>
-					<failOnViolation>true</failOnViolation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.2</version>
-				<configuration>
-					<failOnError>true</failOnError>
-				</configuration>
-			</plugin>
 
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<inherited>true</inherited>
-				<configuration>
-					<encoding>UTF-8</encoding>
-					<source>1.7</source>
-					<target>1.7</target>
-					<meminitial>1024m</meminitial>
-					<maxmem>2024m</maxmem>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
-
-	<scm>
-		<developerConnection>scm:git:ssh://git@github.com/1and1/cosmo.git</developerConnection>
-		<connection>scm:git:ssh://git@github.com/1and1/cosmo.git</connection>
-		<url>https://github.com/1and1/</url>
-		<tag>cosmo-multimodule-1.5.3</tag>
-	</scm>
-	
 	<!--<repositories>-->
 		<!--&lt;!&ndash; Embedded Maria DB. &ndash;&gt;-->
 		<!--<repository>-->

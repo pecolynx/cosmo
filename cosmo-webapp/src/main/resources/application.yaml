@@ -51,10 +51,10 @@ spring:
   profiles:
     active: local
   datasource:
-    jdbcUrl: jdbc:mysql://localhost:33060/test?autoReconnect=true
-    username: root
-    password: 
-    driver-class-name: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.56.50:3306/cosmo?autoReconnect=true
+    username: cosmo
+    password: cosmo123!@#COSMO
+    driver-class-name: com.mysql.jdbc.Driver
     hikari:
       maximum-pool-size: 10     
   jpa:        
@@ -62,6 +62,6 @@ spring:
      hibernate.dialect: org.unitedinternet.cosmo.hibernate.CosmoMySQL5InnoDBDialect     
      hibernate.cache.use_query_cache: false
      hibernate.cache.use_second_level_cache: false
-     hibernate.show_sql: false
+     hibernate.show_sql: true
      hibernate.hbm2ddl.auto: create
      hibernate.id.new_generator_mappings: false

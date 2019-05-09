@@ -5,19 +5,21 @@
 	<parent>
 		<artifactId>cosmo-multimodule</artifactId>
 		<groupId>net.oneandone.cosmo</groupId>
-		<version>3.0.0</version>
+		<version>3.4.2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>cosmo-webapp</artifactId>
 	<packaging>war</packaging>
 	<name>cosmo-webapp</name>
+	<version>3.4.2-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>net.oneandone.cosmo</groupId>
 			<artifactId>cosmo-core</artifactId>
-			<version>3.3.1</version>
+			<version>3.4.2-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -43,6 +45,12 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,6 +61,7 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<build>

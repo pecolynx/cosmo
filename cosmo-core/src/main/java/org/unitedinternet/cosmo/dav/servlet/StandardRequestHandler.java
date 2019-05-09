@@ -122,6 +122,8 @@ public class StandardRequestHandler
             wreq = createDavRequest(request);
             wres = createDavResponse(response);
 
+            System.out.println("request: "+ request);
+            System.out.println("wres: "+ wres);
             WebDavResource resource = resolveTarget(wreq);
             preconditions(wreq, wres, resource);
             process(wreq, wres, resource);
@@ -177,9 +179,9 @@ public class StandardRequestHandler
 
 
     private void dumpRequest(HttpServletRequest req) {
-        if (!LOG.isTraceEnabled()) {
-            return;
-        }
+//        if (!LOG.isTraceEnabled()) {
+//            return;
+//        }
 
         StringBuilder sb = new StringBuilder("\n------------------------ Dump of request -------------------\n");
         try {
@@ -228,6 +230,9 @@ public class StandardRequestHandler
         //inject malicious content into the logs.
 
         LOG.trace(sb.toString());
+        System.out.println("dumpRequest");
+        System.out.println(sb.toString());
+        System.out.println("dumpRequest");
     }
     /**
      * <p>

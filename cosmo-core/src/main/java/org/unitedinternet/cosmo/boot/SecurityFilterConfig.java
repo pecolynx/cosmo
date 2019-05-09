@@ -18,6 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.DefaultFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
@@ -106,5 +108,15 @@ public class SecurityFilterConfig {
         FilterRegistrationBean<?> filterBean = new FilterRegistrationBean<>(new FilterChainProxy(filterChain));
         filterBean.addUrlPatterns(PATH_DAV);
         return filterBean;
+    }
+
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        //StrictHttpFirewall firewall = new StrictHttpFirewall();
+        DefaultHttpFirewall firewall = new DefaultHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(true);
+//        firewall.setAllowSemicolon(true);
+//        firewall.setUnsafeAllowAnyHttpMethod(true);
+        return firewall;
     }
 }

@@ -74,6 +74,12 @@ public class ContentDaoImpl extends ItemDaoImpl implements ContentDao {
         setBaseItemProps(collection);
         ((HibItem) collection).addParent(parent);
 
+        System.out.println("aaaaaaaa");
+        System.out.println("aaaaaaaa");
+        System.out.println("aaaaaaaa");
+        System.out.println("aaaaaaaa");
+        System.out.println("aaaaaaaa");
+        System.out.println(this.em.getProperties());
         this.em.persist(collection);
         this.em.flush();
 

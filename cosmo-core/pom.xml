@@ -13,9 +13,12 @@
 		<groupId>net.oneandone.cosmo</groupId>
 		<artifactId>cosmo-multimodule</artifactId>
 		<version>3.4.2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>cosmo-core</artifactId>	
+	<artifactId>cosmo-core</artifactId>
+	<version>3.4.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 
 	<properties>
@@ -61,7 +64,7 @@
 		<dependency>
 			<groupId>net.oneandone.cosmo</groupId>
 			<artifactId>cosmo-api</artifactId>
-			<version>${project.version}</version>
+			<version>3.4.2-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Apache commons -->
@@ -285,6 +288,10 @@
 				<artifactId>httpclient</artifactId>				
 		</dependency>
 
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -326,6 +333,6 @@
 				<directory>src/test/unit/resources/testdata</directory>
 			</testResource>
 		</testResources>
-		
-	</build>	
+
+	</build>
 </project>

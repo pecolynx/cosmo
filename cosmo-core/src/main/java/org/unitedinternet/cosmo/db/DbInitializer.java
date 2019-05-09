@@ -61,14 +61,14 @@ public class DbInitializer {
      * @return <code>true</code> if initialization was required, * <code>false</code> otherwise>.
      */
     public void initialize() {
-        // Create DB schema if not present
-        if (!isSchemaInitialized()) {
-            this.executeStatements(PATH_SCHEMA);
-            LOG.info("[DB-startup] Cosmo database structure created successfully.");
-            for (DatabaseInitializationCallback callback : callbacks) {
-                callback.execute();
-            }
-        }
+//        // Create DB schema if not present
+//        if (!isSchemaInitialized()) {
+//            this.executeStatements(PATH_SCHEMA);
+//            LOG.info("[DB-startup] Cosmo database structure created successfully.");
+//            for (DatabaseInitializationCallback callback : callbacks) {
+//                callback.execute();
+//            }
+//        }
         // More thorough schema validation
         validateSchema();
     }

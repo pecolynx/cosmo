@@ -71,7 +71,7 @@ public class HibPasswordRecovery extends BaseModelObject implements PasswordReco
     public HibPasswordRecovery(User user, String key) {
         this(user, key, DEFAULT_TIMEOUT);
     }
-    
+
     /**
      * 
      */

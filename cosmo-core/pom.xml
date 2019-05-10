@@ -37,6 +37,7 @@
 		<jacoco.check.lineRatio>0.43</jacoco.check.lineRatio>
 		<jacoco.check.instructionRatio>0.42</jacoco.check.instructionRatio>
 		<jacoco.check.classRatio>0.66</jacoco.check.classRatio>
+		<main.basedir>${basedir}/..</main.basedir>
 
 	</properties>
 

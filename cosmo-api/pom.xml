@@ -5,7 +5,7 @@
 		<groupId>net.oneandone.cosmo</groupId>
 		<artifactId>cosmo-multimodule</artifactId>
 		<version>3.4.2-SNAPSHOT</version>
-		<!--<relativePath>../pom.xml</relativePath>-->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 		
 	<artifactId>cosmo-api</artifactId>
@@ -17,8 +17,9 @@
 
 	<properties>
 		<findbugs.suppressions.config.file>findbugs-suppressions.xml</findbugs.suppressions.config.file>
+		<main.basedir>${basedir}/..</main.basedir>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-logging</groupId>
